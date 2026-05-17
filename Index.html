@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniature Prompt Studio Pro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Scrollbar kustom untuk estetika premium */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #18181b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #52525b;
+        }
+        .glassmorphism {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(63, 63, 70, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans min-h-screen antialiased selection:bg-amber-500 selection:text-black">
+
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        
+        <!-- Bagian Header -->
+        <header class="text-center mb-8">
+            <div class="inline-flex items-center gap-3 bg-zinc-900/80 border border-zinc-800 px-4 py-2 rounded-full text-amber-400 text-sm font-semibold mb-4 shadow-lg shadow-black/20">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                </span>
+                Facebook Content Tool v2.0
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent mb-3">
+                Miniature Prompt Studio Pro
+            </h1>
+            <p class="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base">
+                Rancang prompt dunia miniatur sinematik berkualitas tinggi secara instan. Terinspirasi dari foto mahakarya jalanan Anda.
+            </p>
+        </header>
+
+        <!-- Presets Shortcut Bar (Terinspirasi dari Foto User) -->
+        <section class="max-w-4xl mx-auto mb-8 bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-transparent border border-amber-500/20 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-amber-500/20 text-amber-400 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-zinc-100">Gunakan Preset Hasil Foto Anda</h3>
+                    <p class="text-xs text-zinc-400">Atur semua opsi ke setelan "Vespa Merah & Kaleng Soda" dalam satu klik.</p>
+                </div>
+            </div>
+            <button onclick="applyVespaPreset()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs rounded-xl transition-all active:scale-95 shadow-lg shadow-amber-500/10 flex items-center gap-1.5">
+                ⚡ Gunakan Preset Foto Saya
+            </button>
+        </section>
+
+        <!-- Area Kerja Utama -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Sisi Kiri: Kontrol Kustomisasi (7 Kolom) -->
+            <main class="lg:col-span-7 space-y-6">
+                <div class="glassmorphism p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                        <h2 class="text-lg font-bold text-zinc-200 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                            Kustomisasi Karakter & Adegan
+                        </h2>
+                        <button onclick="randomizeAll()" class="text-xs font-semibold px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg flex items-center gap-1 transition-all">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.228 10H18.22M5.22 11H3v1a9 9 0 0015.356 2m1.52-2H21"></path></svg>
+                            Acak Prompt
+                        </button>
+                    </div>
+
+                    <!-- Kategori 1: Karakter -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="char" class="block text-sm font-semibold text-zinc-300">1. Subjek / Karakter Mini</label>
+                            <span class="text-xs text-amber-400/80 font-medium">Bisa kustom</span>
+                        </div>
+                        <select id="char" onchange="handleSelectChange('char')" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm outline-none">
+                            <option value="highly detailed miniature classic red Vespa scooter" selected>Vespa Klasik Merah (Sesuai Foto Anda)</option>
+                            <option value="action figure of Transformers Bumblebee">Bumblebee (Transformers)</option>
+                            <option value="action figure of Transformers Optimus Prime">Optimus Prime (Transformers)</option>
+                            <option value="action figure of Iron Man in Mark 85 armor">Iron Man</option>
+                            <option value="action figure of a cute Spider-Man in a chibi style">Spider-Man Chibi</option>
+                            <option value="action figure of a cute small astronaut with a shiny visor">Astronot Mini Lucu</option>
+                            <option value="action figure of Studio Ghibli Totoro holding a tiny leaf">Totoro (Studio Ghibli)</option>
+                            <option value="highly detailed miniature Ducati MotoGP racing bike">Motor Balap Ducati</option>
+                            <option value="miniature LEGO construction worker holding a tiny wrench">Pekerja Konstruksi LEGO</option>
+                            <option value="custom">✍️ Tulis Sendiri (Kustom)...</option>
+                        </select>
+                        <input id="char-custom" type="text" placeholder="Contoh: action figure of Batman holding a tiny mug..." class="hidden w-full bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" oninput="liveUpdate()">
+                    </div>
+
+                    <!-- Kategori 2: Aktivitas -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="activity" class="block text-sm font-semibold text-zinc-300">2. Aktivitas / Pose (Ekspresif)</label>
+                            <span class="text-xs text-amber-400/80 font-medium">Banyak Variasi</span>
+                        </div>
+                        <select id="activity" onchange="handleSelectChange('activity')" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm outline-none">
+                            <option value="parked neatly on" selected>Parkir Rapi di Atas (Sesuai Foto Anda)</option>
+                            <option value="sitting casually on">Duduk Santai di Atas</option>
+                            <option value="leaning tiredly against">Bersandar Kelelahan pada</option>
+                            <option value="trying to climb up">Berusaha Keras Memanjat</option>
+                            <option value="standing proudly and looking at the sky from">Berdiri Gagah Menatap Langit dari</option>
+                            <option value="kneeling down and examining">Berlutut dan Memeriksa Detail</option>
+                            <option value="hiding secretly behind">Bersembunyi secara Rahasia di Balik</option>
+                            <option value="taking a selfie next to">Berpose Selfie di Samping</option>
+                            <option value="running joyfully across">Berlari Gembira Menyeberangi</option>
+                            <option value="crossing arms and standing guard on">Menyilangkan Tangan dan Berjaga di</option>
+                            <option value="sitting cross-legged and meditating on">Duduk Bersila dan Bermeditasi di Atas</option>
+                            <option value="custom">✍️ Tulis Sendiri (Kustom)...</option>
+                        </select>
+                        <input id="activity-custom" type="text" placeholder="Contoh: sleeping peacefully under..." class="hidden w-full bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" oninput="liveUpdate()">
+                    </div>
+
+                    <!-- Kategori 3: Lokasi -->
+                    <div class="space-y-2">
+                        <label for="location" class="block text-sm font-semibold text-zinc-300">3. Lingkungan / Lokasi Jalanan</label>
+                        <select id="location" onchange="handleSelectChange('location')" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm outline-none">
+                            <option value="a concrete street curb" selected>Pinggiran Trotoar Beton Kota (Sesuai Foto Anda)</option>
+                            <option value="the top of a green mossy brick">Bagian Atas Bata Berlumut</option>
+                            <option value="an asphalt road right on the yellow traffic line">Jalan Aspal Tepat di Marka Kuning</option>
+                            <option value="the edge of a rusty street metal bench">Ujung Bangku Besi Jalanan Tua</option>
+                            <option value="a cracked pedestrian concrete walkway">Trotoar Beton Jalanan yang Retak</option>
+                            <option value="the metallic surface of a street drain grate">Permukaan Logam Kisi Pembuangan Air</option>
+                            <option value="custom">✍️ Tulis Sendiri (Kustom)...</option>
+                        </select>
+                        <input id="location-custom" type="text" placeholder="Contoh: a stack of vintage retro books on..." class="hidden w-full bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" oninput="liveUpdate()">
+                    </div>
+
+                    <!-- Kategori 4: Objek Pendukung -->
+                    <div class="space-y-2">
+                        <label for="prop" class="block text-sm font-semibold text-zinc-300">4. Objek Pendukung (Efek Skala)</label>
+                        <select id="prop" onchange="handleSelectChange('prop')" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm outline-none">
+                            <option value="a discarded red soda can resting next to a shallow water puddle reflecting the ambient city light" selected>Kaleng Soda Merah Bekas & Genangan Air Dangkal (Sesuai Foto Anda)</option>
+                            <option value="a tiny puddle reflecting the bright city lights">Genangan Air Kecil (Pantulan Cahaya Kota secara Umum)</option>
+                            <option value="a discarded soda can that looks giant next to it">Kaleng Soda Bekas Biasa (Terlihat Sangat Raksasa)</option>
+                            <option value="a fallen autumn leaf used as a makeshift umbrella">Daun Gugur (Dijadikan Payung Darurat)</option>
+                            <option value="a giant smartphone leaning on the wall nearby">Smartphone yang Tampak Raksasa di Sebelahnya</option>
+                            <option value="a few scattered small pebbles that look like huge boulders">Beberapa Kerikil yang Tampak Seperti Batu Besar</option>
+                            <option value="a tiny dandelion flower growing out of a concrete crack">Bunga Randa Tapak yang Tumbuh di Sela Beton</option>
+                            <option value="custom">✍️ Tulis Sendiri (Kustom)...</option>
+                        </select>
+                        <input id="prop-custom" type="text" placeholder="Contoh: a giant dropped matchstick with red tip..." class="hidden w-full bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" oninput="liveUpdate()">
+                    </div>
+
+                    <!-- Kategori 5: Pencahayaan -->
+                    <div class="space-y-2">
+                        <label for="lighting" class="block text-sm font-semibold text-zinc-300">5. Waktu & Pencahayaan</label>
+                        <select id="lighting" onchange="handleSelectChange('lighting')" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-sm outline-none">
+                            <option value="golden hour, warm sunset light casting long soft shadows" selected>Golden Hour & Bayangan Sunset Lembut (Sesuai Foto Anda)</option>
+                            <option value="a rainy night with neon cyberpunk lights, realistic wet reflections">Malam Hujan (Neon Cyberpunk & Kilau Jalanan Basah)</option>
+                            <option value="bright morning sunlight with soft and clean shadows">Pagi Hari Cerah (Bersih, Tajam & Alami)</option>
+                            <option value="dramatic sunset with long shadows and orange sky glow">Sunset Dramatis (Bayangan Panjang & Langit Merah Oranye)</option>
+                            <option value="misty early morning with soft diffused foggy atmosphere">Fajar Berkabut (Suasana Halus & Penuh Kabut Misterius)</option>
+                            <option value="custom">✍️ Tulis Sendiri (Kustom)...</option>
+                        </select>
+                        <input id="lighting-custom" type="text" placeholder="Contoh: dramatic dramatic studio spotlight from the top..." class="hidden w-full bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" oninput="liveUpdate()">
+                    </div>
+                </div>
+            </main>
+
+            <!-- Sisi Kanan: Mesin Prompt & Favorit (5 Kolom) -->
+            <section class="lg:col-span-5 space-y-6">
+                
+                <!-- Output Studio Prompt -->
+                <div class="glassmorphism p-6 sm:p-8 rounded-2xl border-l-4 border-l-amber-500 shadow-xl space-y-6">
+                    <h2 class="text-lg font-bold text-zinc-200 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        Mesin Prompt AI
+                    </h2>
+
+                    <div class="bg-zinc-950/90 border border-zinc-800 p-4 rounded-xl relative group">
+                        <span class="absolute top-2 right-3 text-[10px] font-bold tracking-wider text-zinc-600 uppercase">Aset Prompt</span>
+                        <textarea id="output" readonly class="w-full h-44 bg-transparent text-sm text-emerald-400 font-mono resize-none outline-none leading-relaxed select-all pt-4" placeholder="Prompt otomatis tersusun di sini..."></textarea>
+                    </div>
+
+                    <!-- Tindakan -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="copyPrompt()" class="w-full py-3 bg-amber-500 hover:bg-amber-400 active:scale-95 text-zinc-950 font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 transition-all text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a3 3 0 013-3h3a3 3 0 013 3m0 0V5a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            Salin Prompt
+                        </button>
+                        <button onclick="saveToFavorites()" class="w-full py-3 bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-200 font-bold rounded-xl flex items-center justify-center gap-2 transition-all border border-zinc-700 text-sm">
+                            <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+                            Simpan Favorit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daftar Favorit Disimpan -->
+                <div class="glassmorphism p-6 sm:p-8 rounded-2xl shadow-xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold tracking-wider text-zinc-400 uppercase flex items-center gap-2">
+                            <svg class="w-4 h-4 text-rose-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path></svg>
+                            Koleksi Favoritmu
+                        </h3>
+                        <button onclick="clearFavorites()" class="text-[10px] text-zinc-500 hover:text-rose-400 font-bold uppercase tracking-wider transition-all">
+                            Hapus Semua
+                        </button>
+                    </div>
+
+                    <div id="favorites-list" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                        <!-- Daftar favorit diisi via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tips Alur Produksi -->
+                <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-xl space-y-2">
+                    <h4 class="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wide">
+                        💡 Tips Menggunakan Hasil Gambar:
+                    </h4>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        1. Gunakan <b>"Salin Prompt"</b> dan tempel ke AI generator favorit Anda.<br>
+                        2. Masukkan hasil render Anda yang memukau ke editor video seperti <b>CapCut</b>.<br>
+                        3. Pasang lagu estetik *lo-fi* atau *chill vibes* yang sedang naik daun di Facebook untuk Reels yang sangat interaktif!
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Notifikasi Toast Melayang (Bebas dari gangguan browser alert) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 ease-out max-w-sm">
+        <div class="bg-zinc-900 border border-zinc-700/80 px-4 py-3.5 rounded-xl shadow-2xl flex items-center gap-3">
+            <span id="toast-icon-wrapper" class="p-1.5 rounded-lg">
+                <!-- Ikon SVG Dinamis -->
+            </span>
+            <div class="flex-1">
+                <p id="toast-title" class="text-xs font-bold text-zinc-100"></p>
+                <p id="toast-desc" class="text-[11px] text-zinc-400 mt-0.5"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mesin JavaScript Utama -->
+    <script>
+        const selectKeys = ['char', 'activity', 'location', 'prop', 'lighting'];
+
+        window.onload = function() {
+            renderFavorites();
+            liveUpdate();
+        }
+
+        // Fungsi mengaplikasikan preset foto buatan pengguna (Vespa + Kaleng Coca-Cola)
+        function applyVespaPreset() {
+            document.getElementById('char').value = "highly detailed miniature classic red Vespa scooter";
+            document.getElementById('activity').value = "parked neatly on";
+            document.getElementById('location').value = "a concrete street curb";
+            document.getElementById('prop').value = "a discarded red soda can resting next to a shallow water puddle reflecting the ambient city light";
+            document.getElementById('lighting').value = "golden hour, warm sunset light casting long soft shadows";
+
+            // Sembunyikan semua input kustom jika sebelumnya terbuka
+            selectKeys.forEach(key => {
+                document.getElementById(`${key}-custom`).classList.add('hidden');
+            });
+
+            liveUpdate();
+            showToast(
+                'Preset Anda Berhasil Dimuat!', 
+                'Dropdown otomatis disesuaikan dengan foto Vespa & Kaleng Soda Anda.',
+                `<svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+                'bg-amber-500/10'
+            );
+        }
+
+        function handleSelectChange(id) {
+            const selectEl = document.getElementById(id);
+            const customInput = document.getElementById(`${id}-custom`);
+            
+            if (selectEl.value === 'custom') {
+                customInput.classList.remove('hidden');
+                customInput.focus();
+            } else {
+                customInput.classList.add('hidden');
+            }
+            liveUpdate();
+        }
+
+        function liveUpdate() {
+            const variables = {};
+
+            selectKeys.forEach(key => {
+                const selectEl = document.getElementById(key);
+                if (selectEl.value === 'custom') {
+                    const customValue = document.getElementById(`${key}-custom`).value.trim();
+                    variables[key] = customValue || `[Kustom ${key}]`;
+                } else {
+                    variables[key] = selectEl.value;
+                }
+            });
+
+            // Menyusun kalimat prompt makro berkualitas tinggi
+            const compiledPrompt = `A high-fidelity, photorealistic macro shot of a tiny, 15cm detailed miniature ${variables.char}. The mini object is ${variables.activity} ${variables.location} in a busy city. Nearby, there is ${variables.prop}. In the background, real-sized cars and city traffic are heavily blurred with a beautiful cinematic bokeh effect. Cinematic lighting during ${variables.lighting}, visible textures, captured on a 100mm macro lens, f/1.8, 4k resolution.`;
+
+            document.getElementById('output').value = compiledPrompt;
+        }
+
+        function randomizeAll() {
+            selectKeys.forEach(key => {
+                const selectEl = document.getElementById(key);
+                const customInput = document.getElementById(`${key}-custom`);
+                
+                const eligibleOptions = Array.from(selectEl.options).filter(opt => opt.value !== 'custom');
+                const randomOpt = eligibleOptions[Math.floor(Math.random() * eligibleOptions.length)];
+                
+                selectEl.value = randomOpt.value;
+                customInput.classList.add('hidden');
+            });
+
+            liveUpdate();
+            showToast(
+                'Kombinasi Diacak!', 
+                'Inspirasi adegan miniatur baru siap disalin ke AI.',
+                `<svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`,
+                'bg-amber-500/10'
+            );
+        }
+
+        function showToast(title, desc, iconSvg, accentBg) {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toast-title');
+            const toastDesc = document.getElementById('toast-desc');
+            const iconWrapper = document.getElementById('toast-icon-wrapper');
+
+            toastTitle.innerText = title;
+            toastDesc.innerText = desc;
+            iconWrapper.innerHTML = iconSvg;
+            iconWrapper.className = `p-1.5 rounded-lg ${accentBg}`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+
+        function copyPrompt() {
+            const outputText = document.getElementById('output');
+            if(!outputText.value) return;
+
+            outputText.select();
+            outputText.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            
+            window.getSelection().removeAllRanges();
+
+            showToast(
+                'Prompt Berhasil Disalin!', 
+                'Tempel langsung di Gemini, Midjourney, atau Flux.',
+                `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a3 3 0 013-3h3a3 3 0 013 3m-6 9l2 2 4-4"></path></svg>`,
+                'bg-emerald-500/10'
+            );
+        }
+
+        function saveToFavorites() {
+            const promptVal = document.getElementById('output').value;
+            if(!promptVal) return;
+
+            let favorites = JSON.parse(localStorage.getItem('mini_prompt_favs')) || [];
+            
+            if(favorites.includes(promptVal)) {
+                showToast(
+                    'Sudah Tersimpan', 
+                    'Kombinasi prompt ini sudah ada di daftar favoritmu.',
+                    `<svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+                    'bg-sky-500/10'
+                );
+                return;
+            }
+
+            favorites.unshift(promptVal);
+            localStorage.setItem('mini_prompt_favs', JSON.stringify(favorites));
+            
+            renderFavorites();
+            showToast(
+                'Ditambahkan ke Favorit', 
+                'Kombinasi tersimpan dengan aman.',
+                `<svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>`,
+                'bg-rose-500/10'
+            );
+        }
+
+        function deleteFavorite(index) {
+            let favorites = JSON.parse(localStorage.getItem('mini_prompt_favs')) || [];
+            favorites.splice(index, 1);
+            localStorage.setItem('mini_prompt_favs', JSON.stringify(favorites));
+            renderFavorites();
+        }
+
+        function clearFavorites() {
+            localStorage.removeItem('mini_prompt_favs');
+            renderFavorites();
+            showToast(
+                'Favorit Dikosongkan', 
+                'Semua daftar favorit Anda telah dibersihkan.',
+                `<svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>`,
+                'bg-zinc-800'
+            );
+        }
+
+        function loadFavorite(index) {
+            let favorites = JSON.parse(localStorage.getItem('mini_prompt_favs')) || [];
+            if(favorites[index]) {
+                document.getElementById('output').value = favorites[index];
+                showToast(
+                    'Prompt Dimuat!', 
+                    'Prompt favorit siap disalin ulang.',
+                    `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>`,
+                    'bg-emerald-500/10'
+                );
+            }
+        }
+
+        function renderFavorites() {
+            const listContainer = document.getElementById('favorites-list');
+            let favorites = JSON.parse(localStorage.getItem('mini_prompt_favs')) || [];
+
+            if (favorites.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-xs text-zinc-500 text-center py-6 border border-dashed border-zinc-800 rounded-xl">
+                        Belum ada prompt disimpan. Klik "Simpan Favorit" pada kombinasi yang Anda sukai.
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            favorites.forEach((fav, index) => {
+                const previewText = fav.replace('A high-fidelity, photorealistic macro shot of a tiny, 15cm detailed miniature ', '').substring(0, 60) + '...';
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "flex items-center justify-between gap-3 bg-zinc-900 border border-zinc-800/80 px-3 py-2 rounded-xl text-xs hover:border-zinc-700 transition-all";
+                
+                itemDiv.innerHTML = `
+                    <div class="flex-1 cursor-pointer select-none" onclick="loadFavorite(${index})">
+                        <p class="font-mono text-amber-400 font-semibold text-[11px] truncate">${previewText}</p>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="loadFavorite(${index})" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-emerald-400 rounded transition-all" title="Gunakan">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </button>
+                        <button onclick="deleteFavorite(${index})" class="p-1 hover:bg-zinc-800 text-zinc-400 hover:text-rose-400 rounded transition-all" title="Hapus">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(itemDiv);
+            });
+        }
+    </script>
+</body>
+</html>
